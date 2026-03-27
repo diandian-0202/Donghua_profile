@@ -44,7 +44,7 @@ export default function Contact() {
         </p>
 
         <motion.a
-          href="mailto:donghua@umich.edu"
+          href="#"
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.97 }}
           style={{
@@ -64,36 +64,6 @@ export default function Contact() {
           Say Hello →
         </motion.a>
 
-        {/* Social links */}
-        <div style={{
-          display: 'flex', justifyContent: 'center', gap: '24px', marginTop: '16px',
-        }}>
-          {[
-            { label: 'GitHub', href: 'https://github.com/donghuazhang' },
-            { label: 'LinkedIn', href: 'https://linkedin.com/in/donghuazhang' },
-            { label: 'Email', href: 'mailto:donghua@umich.edu' },
-          ].map(social => (
-            <motion.a
-              key={social.label}
-              href={social.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              whileHover={{ y: -3 }}
-              style={{
-                color: '#475569',
-                textDecoration: 'none',
-                fontSize: '13px',
-                fontFamily: 'JetBrains Mono, monospace',
-                letterSpacing: '0.5px',
-                transition: 'color 0.2s',
-              }}
-              onMouseEnter={e => e.currentTarget.style.color = '#a78bfa'}
-              onMouseLeave={e => e.currentTarget.style.color = '#475569'}
-            >
-              {social.label}
-            </motion.a>
-          ))}
-        </div>
       </motion.div>
 
       {/* Footer */}
