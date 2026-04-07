@@ -1,95 +1,116 @@
-import { motion } from 'framer-motion'
-import { useInView } from 'framer-motion'
-import { useRef } from 'react'
-
-const stats = [
-  { value: 'M.S.', label: 'CSE @ UMich' },
-  { value: '2026', label: 'Expected Grad' },
-  { value: '∞', label: 'Curiosity' },
-]
+import donghuaImg from '../assets/donghua.png'
 
 export default function About() {
-  const ref = useRef(null)
-  const inView = useInView(ref, { once: true, margin: '-100px' })
-
   return (
-    <section
-      id="about"
-      ref={ref}
-      style={{
-        maxWidth: '1000px', margin: '0 auto',
-        padding: '120px 24px',
-        position: 'relative', zIndex: 1,
-      }}
-    >
-      <motion.div
-        initial={{ opacity: 0, y: 40 }}
-        animate={inView ? { opacity: 1, y: 0 } : {}}
-        transition={{ duration: 0.7 }}
-      >
+    <div style={{
+      display: 'flex',
+      justifyContent: 'center',
+      padding: '64px 48px 40px',
+    }}>
+      <section id="about" style={{ maxWidth: '1100px', width: '100%' }}>
+        {/* Main row: photo left, text right */}
         <div style={{
-          display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '48px',
+          display: 'flex',
+          gap: '80px',
+          alignItems: 'flex-start',
         }}>
-          <span style={{
-            fontFamily: 'JetBrains Mono, monospace', color: '#7c3aed', fontSize: '14px',
-          }}>01.</span>
-          <h2 style={{ fontSize: '36px', fontWeight: 700, letterSpacing: '-1px', color: '#f1f5f9' }}>
-            About Me
-          </h2>
-          <div style={{ flex: 1, height: '1px', background: 'rgba(124,58,237,0.2)' }} />
-        </div>
-
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '64px', alignItems: 'center' }}>
-          <div>
-            <p style={{ color: '#94a3b8', lineHeight: '1.8', fontSize: '16px', marginBottom: '20px' }}>
-              Hey! I'm <span style={{ color: '#a78bfa', fontWeight: 600 }}>Donghua Zhang</span>, a Master's student
-              in Computer Science & Engineering at the
-              <span style={{ color: '#06b6d4', fontWeight: 600 }}> University of Michigan</span>.
-            </p>
-            <p style={{ color: '#94a3b8', lineHeight: '1.8', fontSize: '16px', marginBottom: '20px' }}>
-              I'm passionate about building things that live on the internet — from scalable backends
-              to polished frontends. I love turning complex problems into elegant, user-friendly solutions.
-            </p>
-            <p style={{ color: '#94a3b8', lineHeight: '1.8', fontSize: '16px' }}>
-              When I'm not coding, I'm probably exploring new tech, contributing to open source,
-              or grinding LeetCode.
-            </p>
+          {/* Photo */}
+          <div style={{ flexShrink: 0 }}>
+            <img
+              src={donghuaImg}
+              alt="Donghua Zhang"
+              style={{
+                width: '260px',
+                borderRadius: '8px',
+                display: 'block',
+                objectFit: 'cover',
+              }}
+            />
+          <p style={{ color: '#aaa', fontSize: '13px', textAlign: 'center', marginTop: '10px' }}>
+            早上好呀朋友们
+          </p>
           </div>
 
-          {/* Stats */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
-            {stats.map((s, i) => (
-              <motion.div
-                key={s.label}
-                initial={{ opacity: 0, x: 30 }}
-                animate={inView ? { opacity: 1, x: 0 } : {}}
-                transition={{ delay: 0.2 + i * 0.15 }}
-                style={{
-                  padding: '24px 28px',
-                  background: 'rgba(15,10,35,0.7)',
-                  border: '1px solid rgba(124,58,237,0.2)',
-                  borderRadius: '12px',
-                  display: 'flex', alignItems: 'center', gap: '20px',
-                  backdropFilter: 'blur(10px)',
-                }}
+          {/* Text */}
+          <div style={{ flex: 1 }}>
+            <h1 style={{
+              fontSize: '38px',
+              fontWeight: 400,
+              marginBottom: '22px',
+              letterSpacing: '-0.5px',
+              color: '#f0f0f0',
+            }}>
+              <span style={{ fontWeight: 700 }}>Donghua</span> Zhang
+            </h1>
+
+            <p style={{ color: '#ccc', marginBottom: '14px', lineHeight: '1.75' }}>
+              I am Donghua Zhang (张栋华 in Chinese), a Master's student in Computer Science
+              &amp; Engineering at the{' '}
+              <a href="https://umich.edu" style={{ color: '#7ab8f5' }}>University of Michigan</a> (Ann Arbor, US),
+              expected to graduate in 2026, where I am currently honored to be advised by{' '}
+              <a href="https://liyueshen.engin.umich.edu" style={{ color: '#7ab8f5' }}>Prof. Liyue Shen</a>,
+              working on the area of medical AI.
+              Before that, I was honored to be advised by{' '}
+              <a href="https://bme.umich.edu/people/krishnan-chandramouli/" style={{ color: '#7ab8f5' }}>Prof. Chandramouli Krishnan</a>,
+              where I was working on virtual reality development for rehabilitation.
+            </p>
+
+            <p style={{ color: '#ccc', marginBottom: '14px', lineHeight: '1.75' }}>
+              My research interests lie in <strong style={{ color: '#e0e0e0' }}>implicit neural representation</strong> and{' '}
+              <strong style={{ color: '#e0e0e0' }}>medical LLMs and VLMs</strong>.
+            </p>
+
+            <p style={{ color: '#ccc', marginBottom: '28px', lineHeight: '1.75' }}>
+              See more in my <a href="#" style={{ color: '#7ab8f5' }}>detailed CV</a>.
+            </p>
+
+            {/* Social icons */}
+            <div style={{ display: 'flex', gap: '18px', alignItems: 'center' }}>
+              <a href="mailto:donghuaz@umich.edu" title="Email"
+                style={{ color: '#aaa', display: 'flex', transition: 'color 0.15s' }}
+                onMouseEnter={e => e.currentTarget.style.color = '#7ab8f5'}
+                onMouseLeave={e => e.currentTarget.style.color = '#aaa'}
               >
-                <span style={{
-                  fontSize: '36px', fontWeight: 700,
-                  background: 'linear-gradient(135deg, #7c3aed, #06b6d4)',
-                  WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent',
-                  fontFamily: 'JetBrains Mono, monospace',
-                  minWidth: '80px',
-                }}>
-                  {s.value}
-                </span>
-                <span style={{ color: '#64748b', fontSize: '14px', fontWeight: 500, letterSpacing: '0.5px' }}>
-                  {s.label}
-                </span>
-              </motion.div>
-            ))}
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                </svg>
+              </a>
+
+              <a href="https://github.com/" title="GitHub"
+                style={{ color: '#aaa', display: 'flex', transition: 'color 0.15s' }}
+                onMouseEnter={e => e.currentTarget.style.color = '#f0f0f0'}
+                onMouseLeave={e => e.currentTarget.style.color = '#aaa'}
+              >
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.17 6.839 9.49.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.604-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.463-1.11-1.463-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0 1 12 6.836c.85.004 1.705.114 2.504.336 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.167 22 16.418 22 12c0-5.523-4.477-10-10-10z"/>
+                </svg>
+              </a>
+
+              <a href="https://linkedin.com/" title="LinkedIn"
+                style={{ color: '#aaa', display: 'flex', transition: 'color 0.15s' }}
+                onMouseEnter={e => e.currentTarget.style.color = '#7ab8f5'}
+                onMouseLeave={e => e.currentTarget.style.color = '#aaa'}
+              >
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/>
+                </svg>
+              </a>
+            </div>
           </div>
         </div>
-      </motion.div>
-    </section>
+
+        {/* Footer line */}
+        <div style={{
+          marginTop: '48px',
+          paddingTop: '20px',
+          borderTop: '1px solid #555',
+          color: '#777',
+          fontSize: '14px',
+          textAlign: 'center',
+        }}>
+          Feel free to find me in any way you like :)
+        </div>
+      </section>
+    </div>
   )
 }
